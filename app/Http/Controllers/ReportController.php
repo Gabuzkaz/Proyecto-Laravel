@@ -16,7 +16,7 @@ class ReportController extends Controller
                 DB::raw("CONCAT(customer.first_name, ' ', customer.last_name) AS name"),
                 DB::raw('SUM(payment.amount) AS total_paid')
             )
-            ->groupBy('customer.customer_id')
+            ->groupBy('customer.customer_id', 'customer.first_name', 'customer.last_name')
             ->orderByDesc('total_paid')
             ->limit(10)
             ->get();
