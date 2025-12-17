@@ -30,4 +30,13 @@ class Film extends Model
     {
         return $this->belongsTo(Language::class, 'language_id');
     }
+    public function index()
+   {
+    $films = Film::with(['actors', 'categories', 'language'])
+        ->limit(50)
+        ->get();
+
+    return view('films.index', compact('films'));
+    }
+
 }

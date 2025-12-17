@@ -20,4 +20,3 @@ class Country extends Model
         return $this->hasMany(City::class, 'country_id', 'country_id');
     }
 }
-

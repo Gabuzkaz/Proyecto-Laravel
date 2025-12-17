@@ -1,26 +1,14 @@
 @extends('layout')
 
 @section('content')
-<h1>Cliente #{{ $customer->customer_id }}</h1>
+<h2>Detalles del Cliente</h2>
 
-<p><strong>Nombre:</strong> {{ $customer->first_name }} {{ $customer->last_name }}</p>
-<p><strong>Email:</strong> {{ $customer->email }}</p>
-
-<h3>Rentas:</h3>
-<ul>
-@foreach($customer->rentals as $r)
-    <li>
-        {{ $r->inventory->film->title }} —
-        {{ $r->rental_date }}
-    </li>
-@endforeach
+<ul class="list-group">
+    <li class="list-group-item"><strong>ID:</strong> {{ $customer->customer_id }}</li>
+    <li class="list-group-item"><strong>Nombre:</strong> {{ $customer->first_name }}</li>
+    <li class="list-group-item"><strong>Apellido:</strong> {{ $customer->last_name }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ $customer->email }}</li>
 </ul>
 
-<h3>Pagos:</h3>
-<ul>
-@foreach($customer->payments as $p)
-    <li>${{ $p->amount }} — {{ $p->payment_date }}</li>
-@endforeach
-</ul>
+<a href="{{ route('customers.index') }}" class="btn btn-secondary mt-3">Volver</a>
 @endsection
-

@@ -23,4 +23,3 @@ class Category extends Model
         return $this->belongsToMany(Film::class, 'film_category', 'category_id', 'film_id');
     }
 }
-

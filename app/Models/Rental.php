@@ -38,5 +38,15 @@ class Rental extends Model
     {
         return $this->hasMany(Payment::class, 'rental_id', 'rental_id');
     }
+    public function film() 
+    {
+    return $this->belongsTo(Film::class, 'inventory_id', 'inventory_id')
+                ->join('film', 'inventory.film_id', '=', 'film.film_id')
+                ->select('film.*', 'inventory.inventory_id');
+    }
+    public function staff()
+{
+    return $this->belongsTo(Staff::class, 'staff_id');
 }
 
+}

@@ -1,21 +1,29 @@
 @extends('layout')
 
 @section('content')
-<h1>{{ $film->title }}</h1>
+<h2>Detalle de Película</h2>
 
+<p><strong>ID:</strong> {{ $film->film_id }}</p>
+<p><strong>Título:</strong> {{ $film->title }}</p>
+<p><strong>Año:</strong> {{ $film->release_year }}</p>
 <p><strong>Descripción:</strong> {{ $film->description }}</p>
 
-<h4>Categorías:</h4>
-@foreach($film->categories as $c)
-    <span class="badge bg-success">{{ $c->name }}</span>
-@endforeach
+{{-- Idioma --}}
+<p><strong>Idioma:</strong>
+    {{ $film->language ? $film->language->name : 'No definido' }}
+</p>
 
-<h4 class="mt-4">Actores:</h4>
-<ul>
-@foreach($film->actors as $actor)
-    <li>{{ $actor->first_name }} {{ $actor->last_name }}</li>
-@endforeach
-</ul>
+{{-- Categorías --}}
+<p><strong>Categorías:</strong>
+    @foreach ($film->categories as $c)
+        {{ $c->name }}@if(!$loop->last),@endif
+    @endforeach
+</p>
 
+{{-- Actores --}}
+<p><strong>Actores:</strong>
+    @foreach ($film->actors as $a)
+        {{ $a->first_name }} {{ $a->last_name }}@if(!$loop->last),@endif
+    @endforeach
+</p>
 @endsection
-

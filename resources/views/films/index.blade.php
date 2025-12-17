@@ -1,33 +1,48 @@
 @extends('layout')
 
 @section('content')
-<h1 class="mb-4">Películas</h1>
+<h2>Listado de Películas</h2>
+{{-- Barra de búsqueda --}}
+<form method="GET" action="{{ route('films.index') }}" class="mb-3 d-flex" role="search">
+    <input type="text" name="search" class="form-control me-2"
+           placeholder="Buscar película..."
+           value="{{ request('search') }}">
+    <button class="btn btn-secondary">Buscar</button>
+</form>
 
-<table class="table table-bordered table-striped">
+<a href="{{ route('films.create') }}" class="btn btn-primary mb-3">Nueva Película</a>
+
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>ID</th>
             <th>Título</th>
-            <th>Categorías</th>
-            <th>Detalles</th>
+            <th>Año</th>
+            <th>Opciones</th>
         </tr>
     </thead>
+
     <tbody>
-        @foreach($films as $film)
+    @foreach($films as $film)
         <tr>
             <td>{{ $film->film_id }}</td>
             <td>{{ $film->title }}</td>
+            <td>{{ $film->release_year }}</td>
             <td>
-                @foreach($film->categories as $cat)
-                    <span class="badge bg-primary">{{ $cat->name }}</span>
-                @endforeach
-            </td>
-            <td>
-                <a class="btn btn-sm btn-info" href="/films/{{ $film->film_id }}">Ver más</a>
+                <a href="{{ route('films.show', $film) }}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{{ route('films.edit', $film) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                <form action="{{ route('films.destroy', $film) }}" method="POST" style="display:inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
             </td>
         </tr>
-        @endforeach
+    @endforeach
     </tbody>
 </table>
+
+{{ $films->links() }}
 @endsection
 

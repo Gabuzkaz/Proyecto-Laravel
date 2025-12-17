@@ -10,9 +10,18 @@ class Customer extends Model
     protected $primaryKey = 'customer_id';
     public $timestamps = false;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'store_id',
+        'address_id',
+        'create_date'
+    ];
+
     public function rentals()
     {
-        return $this->hasMany(Rental::class, 'customer_id');
+        return $this->hasMany(Rental::class, 'customer_id', 'customer_id');
     }
 
     public function payments()
@@ -25,4 +34,3 @@ class Customer extends Model
         return $this->belongsTo(Address::class, 'address_id');
     }
 }
-

@@ -2,23 +2,32 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Sakila Project</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>Sakila Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
 
-<nav class="navbar navbar-dark bg-dark mb-4">
-    <div class="container">
-        <a class="navbar-brand" href="/">Sakila Dashboard</a>
-        <a class="text-white me-3" href="/films">Películas</a>
-        <a class="text-white me-3" href="/customers">Clientes</a>
-        <a class="text-white me-3" href="/reports/top-customers">Reportes</a>
-    </div>
-</nav>
+@include('menu')
 
-<div class="container">
+<div class="container mt-3">
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
     @yield('content')
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

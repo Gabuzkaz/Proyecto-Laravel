@@ -36,4 +36,3 @@ class Inventory extends Model
         return $this->hasMany(Rental::class, 'inventory_id', 'inventory_id');
     }
 }
-

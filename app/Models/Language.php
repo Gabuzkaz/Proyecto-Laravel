@@ -20,4 +20,3 @@ class Language extends Model
         return $this->hasMany(Film::class, 'language_id', 'language_id');
     }
 }
-

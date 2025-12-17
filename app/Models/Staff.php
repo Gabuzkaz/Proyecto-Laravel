@@ -45,4 +45,3 @@ class Staff extends Model
         return $this->hasMany(Payment::class, 'staff_id', 'staff_id');
     }
 }
-

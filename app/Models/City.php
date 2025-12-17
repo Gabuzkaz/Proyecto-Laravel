@@ -27,4 +27,3 @@ class City extends Model
         return $this->hasMany(Address::class, 'city_id', 'city_id');
     }
 }
-
