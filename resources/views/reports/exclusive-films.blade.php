@@ -25,7 +25,7 @@
 @endif
 
 <a href="{{ route('reports.exclusive-films', $store_id) }}" class="btn btn-primary mt-3">
-    Volver a Películas Exclusivas
+    Volver a Selección de Tienda
 </a>
 
 @endsection
